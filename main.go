@@ -26,6 +26,7 @@ func recoverMw(app http.Handler, dev bool) http.HandlerFunc {
 					http.Error(w, "Something went wrong :(", http.StatusInternalServerError)
 					return
 				}
+				w.WriteHeader(http.StatusInternalServerError)
 				fmt.Fprintf(w, "<h1>panic: %v</h1><pre>%s</pre>", err, string(stack))
 			}
 		}()
